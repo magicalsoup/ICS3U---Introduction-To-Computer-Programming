@@ -1,9 +1,10 @@
 /**
- * 
  * @author amagicalsoup
- * Ms. Leung's class
- * ICS3U
- * Basic Output
+ * @author James Su
+ * @Teacher Ms. Leung's class
+ * @ClassCode ICS3U
+ * @class Basic Output
+ * @Date September 6th, 2018
  */
 public class OutputAssignment {
 	public static void main(String[]args) {
