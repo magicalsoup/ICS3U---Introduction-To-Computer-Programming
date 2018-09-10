@@ -3,7 +3,7 @@
 	 * @author James Su
 	 * @Teacher Ms. Leung
 	 * @ClassCode ICS3U
-	 * @class Basic Output
+	 * @Class Basic Output
 	 * @Date September 7th, 2018
 	 */
 	public class OutputAssignment {
