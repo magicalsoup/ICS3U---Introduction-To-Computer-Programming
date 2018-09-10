@@ -1,7 +1,7 @@
 	/**
 	 * @author amagicalsoup
 	 * @author James Su
-	 * @Teacher Ms. Leung's class
+	 * @Teacher Ms. Leung
 	 * @ClassCode ICS3U
 	 * @class Basic Output
 	 * @Date September 7th, 2018
