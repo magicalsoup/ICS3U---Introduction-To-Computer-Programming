@@ -10,7 +10,7 @@ package VariablesAssignment;
 import java.util.Scanner; // import Scanner
 public class Var7 {
 	public static void main(String[]args) {
-		Scanner sc = new Scanner(System.in); // name the Scanner
+		Scanner sc = new Scanner(System.in); // creating the object Scanner and naming it
 		System.out.println("Please Enter the Length: "); // prompts user for the length
 		int length = sc.nextInt(); // gets the length
 		System.out.println("Please Enter the Width: "); // prompts user for the width
