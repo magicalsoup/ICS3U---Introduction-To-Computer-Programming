@@ -10,7 +10,7 @@ package VariablesAssignment;
 import java.util.Scanner; // import the Scanner
 public class Var3 {
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in); // name the Scanner
+		Scanner sc = new Scanner(System.in); // creating the object Scanner and naming it
 		System.out.println("Please Enter Your Name "); // prompt user for name
 		String name = sc.next(); // gets user's name
 		System.out.println("Please Enter Your Age "); // prompt user for age
