@@ -10,7 +10,7 @@ package VariablesAssignment;
 import java.util.Scanner; // import Scanner
 public class Var6 {
 	public static void main(String[]args) {
-		Scanner sc = new Scanner(System.in); // name the Scanner
+		Scanner sc = new Scanner(System.in); // creating the object Scanner and naming it
 		System.out.println("Please Enter 2 Integers "); // ask for the 2 integers
 		System.out.println("Please Enter The First Number"); // prompt user for first number
 		int a = sc.nextInt(); // gets first number
