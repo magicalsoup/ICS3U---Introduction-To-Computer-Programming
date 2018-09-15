@@ -1,5 +1,13 @@
 package SelectionsAssignment;
 import java.util.Scanner; // import the Scanner
+/**
+ *@author amagicalsoup
+ *@author James Su
+ *@Teacher Ms Leung
+ *@ClassCode ICS3U
+ *@Class Variables
+ *@Date September 14th, 2018
+ */
 public class Sel1 {
 	public static void main(String[]args) {
 		Scanner sc = new Scanner(System.in); // creating the object Scanner and naming it
