@@ -11,7 +11,7 @@ import java.util.Scanner; // import the Scanner
 public class Sel2 {
 	public static void main(String[]args) {
 		Scanner sc = new Scanner(System.in); // creating the object Scanner and naming it
-		System.out.println("What is your Mark?"); // prompt user for the mark
+		System.out.println("What Is Your Mark?"); // prompt user for the mark
 		int mark = sc.nextInt(); // get the mark and store it
 		if(mark >= 50) { // if the mark is bigger than or equal to 50
 			System.out.println("You passed");
