@@ -5,7 +5,7 @@ import java.util.Scanner; // import the Scanner
  *@author James Su
  *@Teacher Ms Leung
  *@ClassCode ICS3U
- *@Class Variables
+ *@Class Selections
  *@Date September 14th, 2018
  */
 public class Sel2 {
