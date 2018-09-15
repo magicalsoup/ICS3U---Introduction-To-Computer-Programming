@@ -11,7 +11,7 @@ import java.util.Scanner; // import the Scanner
 public class Sel6 {
 	public static void main(String[]args) {
 		Scanner sc = new Scanner(System.in); // creating the object Scanner and naming it
-		System.out.println("What is your mark?"); // ask user for their mark
+		System.out.println("What Is Your Mark?"); // ask user for their mark
 		int mark = sc.nextInt(); // get the user's mark and store it
 		// I think the if statements are pretty self explanatory 
 		if(mark >= 75 && mark <= 100) {
