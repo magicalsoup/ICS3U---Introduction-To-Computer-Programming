@@ -11,7 +11,7 @@ import java.util.Scanner; // importing the Scanner
 public class Sel4 {
 	public static void main(String[]args) {
 		Scanner sc = new Scanner(System.in); // creating the object Scanner and naming it
-		System.out.println("Please Enter a Number: "); // prompt user for a number
+		System.out.println("Please Enter A Number: "); // prompt user for a number
 		int number = sc.nextInt(); // get the number and store it
 		if(number == 66) { // if the number is 66
 			System.out.println("you got it");
