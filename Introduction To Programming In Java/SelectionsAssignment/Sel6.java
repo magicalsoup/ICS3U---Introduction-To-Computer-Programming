@@ -1,4 +1,4 @@
-pacakge SelectionsAssignment;
+package SelectionsAssignment;
 import java.util.Scanner; // import the Scanner
 /**
  *@author amagicalsoup
