@@ -18,22 +18,22 @@ public class Sel10 {
 		if(num == 1) {
 			System.out.println("Hello");
 		}
-		if(num == 2) {
+		else if(num == 2) {
 			System.out.println("Hello");
 			System.out.println("Hello");
 		}
-		if(num == 3) {
-			System.out.println("Hello");
-			System.out.println("Hello");
-			System.out.println("Hello");
-		}
-		if(num == 4) {
-			System.out.println("Hello");
+		else if(num == 3) {
 			System.out.println("Hello");
 			System.out.println("Hello");
 			System.out.println("Hello");
 		}
-		if(num == 5) {
+		else if(num == 4) {
+			System.out.println("Hello");
+			System.out.println("Hello");
+			System.out.println("Hello");
+			System.out.println("Hello");
+		}
+		else { 
 			System.out.println("Hello");
 			System.out.println("Hello");
 			System.out.println("Hello");
