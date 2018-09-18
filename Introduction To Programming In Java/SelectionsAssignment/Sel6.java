@@ -1,4 +1,4 @@
-
+pacakge SelectionsAssignment;
 import java.util.Scanner; // import the Scanner
 /**
  *@author amagicalsoup
@@ -8,7 +8,7 @@ import java.util.Scanner; // import the Scanner
  *@Class Selections
  *@Date September 14th, 2018
  */
-public class Temp {
+public class Sel6 {
 	public static void main(String[]args) {
 		Scanner sc = new Scanner(System.in); // creating the object Scanner and naming it
 		System.out.println("What Is Your Mark?"); // ask user for their mark
