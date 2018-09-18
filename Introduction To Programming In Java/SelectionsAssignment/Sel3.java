@@ -17,13 +17,13 @@ public class Sel3 {
 		if(temperature > 30) {
 			System.out.println("hot");
 		}
-		if(temperature >= 20 && temperature <= 30) {
+		else if(temperature >= 20) {
 			System.out.println("comfortable");
 		}
-		if(temperature >= 10 && temperature <= 19) {
+		else if(temperature >= 10) {
 			System.out.println("cool");
 		}
-		if(temperature <=9) {
+		else {
 			System.out.println("cold");
 		}
 		//-------------------------------------------------------------------------------------------//
