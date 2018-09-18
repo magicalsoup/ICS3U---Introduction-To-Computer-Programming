@@ -1,4 +1,4 @@
-package SelectionsAssignment;
+
 import java.util.Scanner; // import the Scanner
 /**
  *@author amagicalsoup
@@ -8,7 +8,7 @@ import java.util.Scanner; // import the Scanner
  *@Class Selections
  *@Date September 14th, 2018
  */
-public class Sel6 {
+public class Temp {
 	public static void main(String[]args) {
 		Scanner sc = new Scanner(System.in); // creating the object Scanner and naming it
 		System.out.println("What Is Your Mark?"); // ask user for their mark
@@ -17,13 +17,13 @@ public class Sel6 {
 		if(mark >= 75 && mark <= 100) {
 			System.out.println("Great");
 		}
-		if(mark >= 50 && mark <= 74) {
+		else if(mark >= 50 && mark <= 100) {
 			System.out.println("Pass");
 		}
-		if(mark >= 0 && mark <= 49) {
+		else if(mark >= 0 && mark <= 100) {
 			System.out.println("Fail");
 		}
-		if(!(mark >= 0 && mark <= 100) ) { // since we can't use 'else if', i did this
+		else { 
 			System.out.println("Invalid");
 		}
 		//-------------------------------------------------------//
