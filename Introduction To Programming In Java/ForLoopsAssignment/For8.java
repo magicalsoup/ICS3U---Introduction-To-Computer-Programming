@@ -9,6 +9,7 @@ public class For8 {
 		Scanner sc = new Scanner(System.in);
 		int sum = 0; // variable to store the sum of the numbers
 		for(int i = 0; i < 5; i++){ // this loops runs 5 times, from 0 to 5
+			System.out.println("Please Enter A Number: "); // prompt user for numbers
 			int num = sc.nextInt(); // get the input number
 			sum += num; // add up the numbers
 		}
