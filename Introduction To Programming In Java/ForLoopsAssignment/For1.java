@@ -1,9 +1,6 @@
 /**
- *@author amagicalsoup
  *@author James Su
  *@Teacher Ms Leung
- *@ClassCode ICS3U
- *@Class ForLoops
  *@Date September 21th, 2018
  */
 public class For1 {
