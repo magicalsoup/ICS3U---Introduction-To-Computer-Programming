@@ -9,6 +9,7 @@ public class For9 {
 		Scanner sc = new Scanner(System.in);
 		double sum = 0; // variable to store the sum of the numbers
 		for(int i = 0; i < 3; i++){ // this loop runs 3 times, from 0 to 3
+			System.out.println("Please Enter A Mark: "); // prompt user for a mark
 			int num = sc.nextInt(); 
 			sum += num;// add up the numbers
 		}
