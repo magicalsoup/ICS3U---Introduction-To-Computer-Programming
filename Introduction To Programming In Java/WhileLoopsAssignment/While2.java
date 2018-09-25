@@ -2,7 +2,7 @@ package WhileLoopsAssignment;
 /**
  *@author James Su
  *@Teacher Ms Leung
- *@Date September 21th, 2018
+ *@Date September 25th, 2018
  */
 public class While2 {
 	public static void main(String[]args){
