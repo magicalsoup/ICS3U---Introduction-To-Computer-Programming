@@ -1,3 +1,4 @@
+package ForLoopsAssignment;
 /**
  *@author James Su
  *@Teacher Ms Leung
@@ -14,3 +15,4 @@ public class For3 {
 		}
 	}
 }
+
