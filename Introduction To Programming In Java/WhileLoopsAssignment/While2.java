@@ -1,3 +1,4 @@
+package WhileLoopsAssignment;
 /**
  *@author James Su
  *@Teacher Ms Leung
