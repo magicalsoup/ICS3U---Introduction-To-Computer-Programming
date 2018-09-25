@@ -1,4 +1,3 @@
-import java.util.Scanner; // import the Scanner
 /**
  *@author James Su
  *@Teacher Ms Leung
@@ -6,12 +5,10 @@ import java.util.Scanner; // import the Scanner
  */
 public class While1 {
 	public static void main(String[]args){
-		Scanner sc = new Scanner(System.in);
 		int index = 0;
-		while(index < 10){ // this loops will run until index is equal to 10
+		while(index < 10){ // this loops will run as long as index is smaller than 10
 			System.out.println("James Su");
 			index++; // increment the index by 1
 		}
-		sc.close();
 	}
 }
