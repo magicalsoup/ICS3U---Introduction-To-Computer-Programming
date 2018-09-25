@@ -1,3 +1,4 @@
+package ForLoopsAssignment;
 import java.util.Scanner; // import the Scanner
 /**
  *@author James Su
@@ -17,3 +18,4 @@ public class For6 {
 		sc.close(); 
 	}
 }
+
