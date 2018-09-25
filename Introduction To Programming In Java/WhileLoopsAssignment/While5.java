@@ -12,7 +12,7 @@ public class While5 {
 		System.out.println("How Many Times: ?"); // ask user to repeat for how many times
 		int times = sc.nextInt(); // get the user inputed time
 		int index = 0;
-		while(index < times){ // this loop will run for 'times' amount of times, as long as the index is smaller than 'times'
+		while(index < times){ // this loop will as long as index is smaller than times
 			System.out.println(word);
 			index++; // increment the index by 1
 		}
