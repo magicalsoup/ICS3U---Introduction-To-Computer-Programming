@@ -1,3 +1,4 @@
+package ForLoopsAssignment;
 /**
  *@author James Su
  *@Teacher Ms Leung
