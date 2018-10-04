@@ -14,33 +14,33 @@ public class Main {
 		System.out.println(); // print a blank line
 		System.out.println("Please Enter Your Name: "); // prompt user for their name
 		String playerName = sc.next(); // get the player's name
-		int totalPoints = 0; // amount of totalPoints
 		System.out.println("Welcome " + playerName); // print
 		System.out.println("Do You Wish To Start? Yes/No "); // prompt user to start the game
 		String respond = sc.next(); // get user's answer
 		if(respond.equalsIgnoreCase("No")) { // if respond equals to No
 			System.out.println("Too bad, Teacher says we need to play at least once!"); // print
 		}
-		//-------------------Generate the Different types of balls------------------------//
-		boolean stillHaveMoreBalls = true;
-		int ballsLeft = 15; // 15 BayviewMon balls in total
-		int bokeBalls = 0;
-		int breatBalls = 0;
-		int bultraBalls = 0;
-		for(int i = 0; i < 15; i++) {
-			int randomBall = (int)(Math.random() * 3 + 1); // generate a random integer from 1 to 3
-			if(randomBall == 1) { // if RandomBall equals to 1
-				bokeBalls++; // increment the number of bokeBalls by 1
-			}
-			if(randomBall == 2) { // if RandomBall equals to 2
-				breatBalls++; // increment the number of breatBalls by 1
-			}
-			if(randomBall == 3) { // if RandomBall equals to 3
-				bultraBalls++; // increment the number of bultraBalls by 1
-			}
-		}
-		//--------------------------------------------------------------------------------//
 		do { // run this first and then check the condition 
+			int totalPoints = 0; // amount of totalPoints
+			//-------------------Generate the Different types of balls------------------------//
+			boolean stillHaveMoreBalls = true;
+			int ballsLeft = 15; // 15 BayviewMon balls in total
+			int bokeBalls = 0;
+			int breatBalls = 0;
+			int bultraBalls = 0;
+			for(int i = 0; i < 15; i++) { // this loops runs from 0 to 15 
+				int randomBall = (int)(Math.random() * 3 + 1); // generate a random integer from 1 to 3
+				if(randomBall == 1) { // if RandomBall equals to 1
+					bokeBalls++; // increment the number of bokeBalls by 1
+				}
+				if(randomBall == 2) { // if RandomBall equals to 2
+					breatBalls++; // increment the number of breatBalls by 1
+				}
+				if(randomBall == 3) { // if RandomBall equals to 3
+					bultraBalls++; // increment the number of bultraBalls by 1
+				}
+			}
+			//--------------------------------------------------------------------------------//
 			while(true) { // runs until an exit statement is called
 				if(ballsLeft == 0) { // if there is no more balls
 					System.out.println("Sorry, You Ran Out Of Balls!");
@@ -73,6 +73,7 @@ public class Main {
 				System.out.println("A Wild " + bayviewMon + " Appeared");
 				while(true) { // a loops that runs until a break statement is called 
 					while(true) { // a while loop that runs until a break statement is called
+						System.out.println("You Have " + bokeBalls + " BokeBalls and " + breatBalls + " BreatBalls and " + bultraBalls + " BultraBalls left" );
 					if(ballsLeft == 0) {
 						stillHaveMoreBalls = false;
 						System.out.println("Sorry, You Ran Out Of Balls!");
@@ -143,11 +144,7 @@ public class Main {
 						}
 						else if(randomOutcome == 2) { // if randomOutcome equals 2
 							System.out.println("You Missed!"); // print
-							System.out.println("Would You Like To Try Again? Yes/No"); // prompt user if they want to try again
-							String reply = sc.next();
-							if(reply.equalsIgnoreCase("No")) {// if reply equals No
-								break; // break out of the while loop
-							}
+							System.out.println("Please Try Again"); // print
 						}
 					}				
 				} // end of middle while loop
@@ -161,6 +158,7 @@ public class Main {
 			else { 
 				System.out.println("You Are A Decent Bayviewmon Catcher"); // print
 			}
+			System.out.println("Your Total Amount Of Points Was " + totalPoints); // print
 			System.out.println("Do You Want To Play Again? Yes/No"); // ask user if they want to play again
 			respond = sc.next(); // get the user's input
 		} while(respond.equalsIgnoreCase("Yes")); // if respond equals yes, run the loop
