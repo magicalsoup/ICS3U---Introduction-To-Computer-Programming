@@ -128,7 +128,6 @@ public class Main {
 					else if(typeOfBall.equalsIgnoreCase("BultraBall")) { // if typeOfBall equals BultraBall
 						percentage += 30; // add 30 to the percentage
 					}
-					percentage = 50;
 					if(percentage >= 50) { // if the percentage is higher or equal to 50
 						System.out.println("You Caught The BayviewMon!"); // print
 						System.out.println("Waiting For The Next Bayviewmon To Appear....."); // print
