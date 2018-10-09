@@ -7,8 +7,12 @@ import java.util.Scanner;
  * @Class ICS3U1 - Period 3
  * @Purpose Summative
  */
+	/**
+	 * @Description
+	 * This Program allows the user to catch Bayviewmons
+	 */
 public class Main {
-	public static void main(String[]args) { // main method
+	public static void main(String[]args)  { // main method
 		Scanner sc = new Scanner(System.in); // create the Scanner
 		System.out.println("Welcome To BayviewMon Go!"); // title
 		System.out.println(); // print a blank line
@@ -114,6 +118,10 @@ public class Main {
 								break; // break out of the while loop
 							}
 						}
+						else { // if the user enters incorrect input
+							System.out.println("INCORRECT INPUT"); // print
+							System.out.println("Please Try Again"); // print
+						}
 					} // end of inner while loop 
 					if(stillHaveMoreBalls == false) { // if there's no more balls
 						System.out.println("Sorry, You Ran Out Of Balls!");
@@ -130,7 +138,7 @@ public class Main {
 						percentage += 30; // add 30 to the percentage
 					}
 					if(percentage >= 50) { // if the percentage is higher or equal to 50
-						System.out.println("You Caught The BayviewMon!"); // print
+						System.out.println("You Caught The " + bayviewMon + "!"); // print
 						System.out.println("Waiting For The Next Bayviewmon To Appear....."); // print
 						System.out.println("..."); // print
 						totalPoints += bayviewMonPoints; // add the value of the bayviewMon to the total amount of points
