@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.Scanner; // import the Scanner
 /**
  * @File BayviewMon Go! game
  * @author James Su
@@ -9,9 +9,17 @@ import java.util.Scanner;
  */
 	/**
 	 * @Description
-	 * This Program allows the user to catch Bayviewmons
+	 * This Program allows the user to catch BayviewMons, the program generates a random BayviewMon, and the point value attached to it, then ask the user to catch the BayviewMon
+	 * the user then enters the type of ball and the program decides if the player catches the BayveiwMon or not, the program is user friendly and prompts the user 
+	 * when necessary, at the end of each game, the program will output the level of the player, excellent catcher, decent catcher or needs more practice, depending on the points they got 
+	 * (from the BayivewMons)
 	 */
-public class Main {
+	/**
+	 * @Notes
+	 * The program runs perfectly, though it may seem you catch a lot more BayviewMon then how many you missed or vice versa, but it may due to the random generator of java, java's random generator
+	 * is not as good as say python or c++, so the randomness of the numbers may not match up with the probability
+	 */
+public class Main { // main class
 	public static void main(String[]args)  { // main method
 		Scanner sc = new Scanner(System.in); // create the Scanner
 		System.out.println("Welcome To BayviewMon Go!"); // title
@@ -19,12 +27,24 @@ public class Main {
 		System.out.println("Please Enter Your Name: "); // prompt user for their name
 		String playerName = sc.next(); // get the player's name
 		System.out.println("Welcome " + playerName); // print
-		System.out.println("Do You Wish To Start? Yes/No "); // prompt user to start the game
-		String respond = sc.next(); // get user's answer
-		if(respond.equalsIgnoreCase("No")) { // if respond equals to No
-			System.out.println("Too bad, Teacher says we need to play at least once!"); // print
-		}
-		do { // run this first and then check the condition 
+		System.out.println(); // prints a blank file
+		//-------------------------------------- Instructions --------------------------------------------//
+			System.out.println("Instructions:"); // print
+			System.out.println(); // print
+			System.out.println("In This Game, You Will Catch BayviewMons"); // print
+			System.out.println("Each BayviewMon Has A Point Value Attached To It"); // print
+			System.out.println("When Encountering A BayivewMon"); // print
+			System.out.println("You Can Throw Different Types Of Balls To Try To Catch it:"); // print
+			System.out.println("BokeBall, BreatBall, and BultraBall."); // print
+			System.out.println("BultraBall Has The Higest Chance, BokeBall Has The Lowest Chance And BreatBall Has A Medium Chance."); // print
+			System.out.println("The BayivewMon May Flee And You Can Miss, But Don't Worry, The Game Will Prompt You With Intructions."); // print
+			System.out.println("Just Input The Ones Given To You In This Format : Option A / Option B / Option C."); // print
+			System.out.println("Dont Worry About Case, The Game's Input Is Not Case Sensitive For Most Inputs."); // print
+			System.out.println("Good Luck!"); // print
+		//-----------------------------------------------------------------------------------------------//
+		System.out.println(); // prints a blank file
+		String respond = ""; // declare and initialize respond variable to empty
+		do { // run this first and then check the condition since the game must be run at least once
 			int totalPoints = 0; // amount of totalPoints
 			//-------------------Generate the Different types of balls------------------------//
 			boolean stillHaveMoreBalls = true;
@@ -74,17 +94,18 @@ public class Main {
 					bayviewMonPoints = 2; // set bayviewMonPoints as 5
 				}
 				String typeOfBall = ""; // declare and set variable typeOfBall as empty
-				System.out.println("A Wild " + bayviewMon + " Appeared");
+				System.out.println("A Wild " + bayviewMon + " Appeared And Its Worth " + bayviewMonPoints + " Points"); // print
 				while(true) { // a loops that runs until a break statement is called 
 					while(true) { // a while loop that runs until a break statement is called
+						if(ballsLeft == 0) { // if the player ran out of balls
+							stillHaveMoreBalls = false; // set the boolean to false
+							System.out.println("Sorry, You Ran Out Of Balls!"); // print
+							break; // break out of this while loop
+						}
 						System.out.println("You Have " + bokeBalls + " BokeBalls and " + breatBalls + " BreatBalls and " + bultraBalls + " BultraBalls left" );
-					if(ballsLeft == 0) {
-						stillHaveMoreBalls = false;
-						System.out.println("Sorry, You Ran Out Of Balls!");
-						break;
-					}
-					System.out.println("What Type Of Ball Would You Like To Use? "); // ask user for type of ball
-					typeOfBall = sc.next(); // get users input
+						System.out.println("What Type Of Ball Would You Like To Use? "); // ask user for type of ball
+						System.out.println("BokeBall / BreatBall / BultraBall");
+						typeOfBall = sc.next(); // get users input
 						if(typeOfBall.equalsIgnoreCase("BokeBall")) { // if typeOfBall equals to BokeBall
 							if(bokeBalls == 0) { // if there is none BokeBalls left
 								System.out.println("Sorry, You Ran Out Of BokeBalls, Please Choose Another Type Of Ball"); // print
@@ -123,8 +144,8 @@ public class Main {
 							System.out.println("Please Try Again"); // print
 						}
 					} // end of inner while loop 
-					if(stillHaveMoreBalls == false) { // if there's no more balls
-						System.out.println("Sorry, You Ran Out Of Balls!");
+					if(stillHaveMoreBalls == false) { // if there's no more balls / the boolean stillHaveMoreBalls equals false
+						System.out.println("Sorry, You Ran Out Of Balls!"); // print
 						break; // break out of the loop
 					}
 					int percentage = (int)(Math.random() * 100 + 1); // generate an integer from 1 to 100
@@ -172,6 +193,6 @@ public class Main {
 		} while(respond.equalsIgnoreCase("Yes")); // if respond equals yes, run the loop
 	
 		System.out.println("Bye - Bye!"); // print
-		sc.close();
+		sc.close(); // close the Scanner
 	} // end of main method
 }
