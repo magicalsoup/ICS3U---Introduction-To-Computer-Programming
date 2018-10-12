@@ -8,7 +8,7 @@ public class Array2 {
 	public static void main(String[]args){
 		Scanner sc = new Scanner(System.in); // create the Scanner
 		System.out.println("Please Enter 10 Integers: "); // prompt user
-		int arr[] = new int[10]; // create the array
+		int arr[] = new int[10]; // create the array with size of 10
 		for(int i = 0; i < arr.length; i++) { // for loop that runs 10 times
 			System.out.println("Please Enter An Integer: "); // prompt user
 			arr[i] = sc.nextInt(); // array at index i is equal to the user's input
