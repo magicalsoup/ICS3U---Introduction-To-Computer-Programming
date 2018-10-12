@@ -1,7 +1,7 @@
 /**
  * @author James Su
  * @Date Oct 12, 2018
- * @ClassMs Leung
+ * @Teacher Ms Leung
  */
 public class Array1 {
 	public static void main(String[]args){ 
