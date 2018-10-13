@@ -20,7 +20,7 @@ public class Array5 {
 		}
 		System.out.println("Print The Ones That Passed Or Failed? Pass / Fail "); // prompt user
 		String respond = sc.next(); // get user input
-		if(respond.equals("Pass")) { // if respond equals Pass 
+		if(respond.equalsIgnoreCase("Pass")) { // if respond equals Pass 
 			for(int i = 0; i < 10; i++) { // a for loop that runs 10 times
 				if(marks[i] >= 50) { // if marks at index i is bigger or equal to 50
 					System.out.println(firstNames[i] + " " + lastNames[i]); // print firstNames at index i and lastNames at index i
@@ -28,9 +28,9 @@ public class Array5 {
 			}
 		}
 		else { // else
-			for(int i = 0; i < 10; i++) { // a for loop that runs 10 tims
+			for(int i = 0; i < 10; i++) { // a for loop that runs 10 times
 				if(marks[i] < 50) { // if marks at index i is smaller than 50
-					System.out.println(firstNames[i] + " " + lastNames[i]); // peinr firstNames at index i and lastNames at index i
+					System.out.println(firstNames[i] + " " + lastNames[i]); // print firstNames at index i and lastNames at index i
 				}
 			}
 		}
