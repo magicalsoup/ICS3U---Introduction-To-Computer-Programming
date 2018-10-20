@@ -1,4 +1,3 @@
-package ArrayProcessingAssignment;
 import java.util.Scanner; // import the Scanner
 /**
  * @author James Su
