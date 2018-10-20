@@ -6,7 +6,7 @@ import java.util.Scanner; // import the Scanner
  */
 public class ArrayProcessing3 {
 	public static void main(String[]args) {
-		Scanner sc = new Scanner(System.in); 
+		Scanner sc = new Scanner(System.in); // create the Scanner
 		String names[] = new String[10]; // creating a string array with size of 10
 		String areaCode[] = new String[10]; // creating a string array with size of 10
 		String phoneNumbers[] = new String[10]; // creating a string array with size of 10
