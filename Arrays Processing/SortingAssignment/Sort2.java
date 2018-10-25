@@ -1,6 +1,6 @@
 import java.util.Scanner; // import the Scanner
 /**
- * @author James S
+ * @author James Su
  * @Teacher Ms Leung
  * @Date Oct 25th 2018
  */
