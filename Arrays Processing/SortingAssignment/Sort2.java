@@ -18,7 +18,7 @@ public class Sort2 {
 		}
 		System.out.println(); // print a blank line
 		boolean isSorted = false; // set a isSorted boolean to false
-		while(!isSorted){ // whils isSorted equals false
+		while(!isSorted){ // while isSorted equals false
 			isSorted = true; // set it to true
 			for(int i = 0; i < arr.length - 1; i++){ // loop that runs 0 to 4
 				if(arr[i] < arr[i + 1]){ // if arr[i] is bigger than arr[i + 1]
