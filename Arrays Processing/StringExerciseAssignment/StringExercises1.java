@@ -4,7 +4,7 @@ import java.util.Scanner; // import the Scanner
  * @Date Oct 31st 2018
  * @Teacher Ms Leung
  */
-public class DataTypes1 {
+public class StringExercises1 {
 	public static void main(String[]args){
 		Scanner sc = new Scanner(System.in); // create the Scanner
 		System.out.println("Please Enter True or False: "); // prompt user
