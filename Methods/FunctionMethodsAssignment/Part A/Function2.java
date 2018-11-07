@@ -10,7 +10,7 @@ public class Function2 {
 		Scanner sc = new Scanner(System.in); // create the Scanner
 		System.out.println("Enter Weight In Poundes: "); // prompt user
 		double cm = sc.nextDouble(); // get user input;
-		System.out.println("That Weight In Kilograms: " + convert(cm));
+		System.out.println("That Weight In Kilograms: " + convert(cm)); // print calc from the method
 		sc.close(); // close the Scanner
 	}
 	static double convert(double lb) { // method to convert pound into kilograms
