@@ -29,6 +29,7 @@ public class Function7 {
 		sc.close(); // close the Scanner
 	}
 	static boolean parallel(int x1, int y1, int x2, int y2) { // method to check if its a parallel line
+		if(x1 == 0 || x2 == 0) return false; // no dividing by zeroes
 		return y1 / x1 == y2 / x2; // return the boolean of this expression
 	}
 	/**
