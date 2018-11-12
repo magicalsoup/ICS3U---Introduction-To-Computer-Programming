@@ -16,6 +16,6 @@ public class Procedure2 {
 	}
 	static void interestBalance(double balance, double rate){
 		double newBalance = balance * (1  + (rate / 100.0)); // get the new balance
-		System.out.println(newBalance); // print the new balance
+		System.out.println("Balance: " + newBalance); // print the new balance
 	}
 }
