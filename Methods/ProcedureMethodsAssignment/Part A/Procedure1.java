@@ -15,6 +15,6 @@ public class Procedure1 {
 		sc.close(); // close the Scanner
 	}
 	static void writeArea(double length, double width){
-		System.out.println(Math.round(length * width)); // return the area
+		System.out.println("The Area: " + Math.round(length * width)); // print the area
 	}
 }
