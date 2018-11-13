@@ -1,4 +1,3 @@
-package ProcedureMethodsAssignment;
 import java.util.Scanner; // import the Scanner
 /**
  * @author James Su
