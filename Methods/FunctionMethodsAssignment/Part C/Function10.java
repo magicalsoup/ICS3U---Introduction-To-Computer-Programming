@@ -1,4 +1,3 @@
-package FunctionMethodsAssignment;
 import java.util.Scanner;
 public class Function10 {
 	public static void main(String[] args) {
