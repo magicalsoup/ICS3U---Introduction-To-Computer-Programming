@@ -7,8 +7,8 @@ import java.util.Scanner; // import the Scanner
 public class Practice2 {
 	public static void main(String[]args) {
 		Scanner sc = new Scanner(System.in); // create the Scanner
-		for(int i = 1; i <= 10; i++) {
-			System.out.println(i + " " + spanishNumbers(i));
+		for(int i = 1; i <= 10; i++) { // for loop that runs from 1 to 10
+			System.out.println(i + " " + spanishNumbers(i)); // print
 		}
 		sc.close(); // close the Scanner
 	}
