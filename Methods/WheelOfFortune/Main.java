@@ -1,75 +1,188 @@
 import java.util.Scanner;
 public class Main {
-	static int wheel[] = new int[24];
-	static String phrase[] = new String[25], alpha[] = new String[25], board;
+	static int wheel[] = new int[25];
+	static String phrase[] = new String[25], alpha[] = new String[26], board[], output = "", correctPhrase = "";
 	public static void main(String[]args) {
 		Scanner sc = new Scanner(System.in);
-		String option = "";
+		String option = "";  initializeGame();
 		do {
-			int rounds = 1, computerScore = 0, playerScore = 0, computerWinnings = 0, playerWinnings = 0;
-			System.out.println("Please Enter Your Name: ");  String playerName = sc.next(); 
-			System.out.println("Welcome " + playerName + "!"); 
+			int rounds = 1, playerScore = 0, playerWinnings = 0, computerWinnings = 0, computerScore = 0;;
 			while(rounds <= 3) {
-				initializeGame(); updateWheel(rounds); resetBoard(); boolean foundTheWord = false; int turn = 1; String output = ""; board = randomPuzzleSelector();
-		round : while(true) { 
-					foundTheWord = puzzleSolved(board, output); if(foundTheWord){ break;}
-					if(isPlayersTurn(turn)) {
-						while(true){
-							System.out.println("Spin");
-							int spinValue = spin(); if(spinValue == -1) {System.out.println("You Landed On Bankrupt!");playerScore = 0; break;} if(spinValue == 0) {System.out.println("You Lost Your Turn!"); break;}
-							System.out.println("You Got: $" + spinValue);
+				System.out.println("Please Enter Your Name: ");  String playerName = sc.next(); 
+				System.out.println("Welcome " + playerName + "!"); 
+				correctPhrase = randomPuzzleSelector(); initializeBoard(); resetAlpha(); updateWheel(rounds); int turns = 1; 
+			round: while(true) {
+				System.out.println("Round: " + rounds);
+					if(isPlayersTurn(turns)) {
+						int spinValue = spin(); 
+						while(true) {
+							if(spinValue == -1) { playerScore = 0; playerWinnings = 0; break;} if(spinValue == 0) break;
+							System.out.println("You Got: " + spinValue);
 							System.out.println("Options: ");
-							System.out.println("1: Guess A Consonant");
+							System.out.println("1: Guess A Letter");
 							System.out.println("2: Buy Vowels");
 							System.out.println("3: Guess The Phrase");
 							int choice = sc.nextInt();
 							if(choice == 1) {
-								System.out.println("Please Enter A Letter: "); char letter = sc.next().charAt(0);
-								while(!validInput(letter) && letterFound(letter)) { System.out.println("Please Enter Another Letter: "); letter = sc.next().charAt(0);}
-								updateAlpha(letter); output = getNewBoard(letter); playerScore += getMoney(letter, spinValue);
-							}
-							if(choice == 2) {
-								if(canBuyVowel(playerScore)) {
-									System.out.println("Please Enter A Vowel"); char vowel = sc.next().charAt(0);
-									while(!validInput(vowel) && letterFound(vowel)){ System.out.println("Please Enter Another Vowel: "); vowel = sc.next().charAt(0);}
-									updateAlpha(vowel); findVowel(vowel); output = getNewBoard(vowel); playerScore -= 250; playerScore += getMoney(vowel, spinValue);
+								System.out.println("Enter A Letter: "); String letter = sc.next(); System.out.println(letter + "DEBUG");
+								while(!letterFoundOnAlpha(letter) && !letterFoundOnBoard(letter) && !isVowel(letter)) {System.out.println("Enter A Letter: "); letter = sc.next();}
+								if(letterFoundOnCorrectPhrase(letter)) {
+									int moneyGot = getMoney(letter, spinValue); playerScore += moneyGot; updateAlpha(letter); getNewBoard(letter);
+									System.out.println("You Guessed: " + letter + " And You Got $" + moneyGot);
 								}
-								else System.out.println("Sorry You Don't Have Enough Money: ");
+								else { System.out.println("Letter Not Found On Phrase");}
+								break;
 							}
-							if(choice == 3){ System.out.println("Please Enter The Phrase: "); output = sc.nextLine(); if(puzzleSolved(board, output)) playerWinnings += playerScore <= 1000? 1000 : playerScore; break round;} 
-							break;
+							else if(choice == 2) {
+								if(canBuyVowel(playerScore)) {
+									while(canBuyVowel(playerScore)) {
+										System.out.println("Enter A Vowel: "); String vowel = sc.next(); playerScore -= 250; getNewBoard(vowel); updateAlpha(vowel);
+										System.out.println("The Board2: "); printBoard();
+										System.out.println("Would You Like To Buy Another Vowel? Y/N"); String respond = sc.next();
+										if(respond.equals("N")) break;
+									}
+									break;
+								}
+								else {
+									System.out.println("Sorry, You Don't Have Enough Money");
+								}
+							}
+							else if(choice == 3) {
+								System.out.println("Please Enter A Phrase: "); sc.nextLine(); String line = sc.nextLine(); 
+								if(line.equals(correctPhrase)) {System.out.println("You Guessed Correctly!"); playerWinnings += playerScore > 1000 ? 1000 : playerScore; break round;}
+								else {System.out.println("That Is Not The Correct Phrase"); break;}
+							}
 						}
 					}
 					else {
-						
+						while(true) {
+							int spinValue = spin(); System.out.println("Computer Got: $" + spinValue);
+							if(spinValue == -1) { computerScore = 0; computerWinnings = 0; break;} if(spinValue == 0) break;
+							int randomChoice = (int)(Math.random() * 3) + 1;
+							if(randomChoice == 1) { 
+								String letter = "";
+								while(!letterFoundOnAlpha(letter) && !letterFoundOnBoard(letter)) { letter = getRandomLetter();}
+								System.out.println("Computer Guessed: " + letter);
+								if(letterFoundOnCorrectPhrase(letter)) {
+									int moneyGot = getMoney(letter, spinValue); computerScore += moneyGot; updateAlpha(letter); getNewBoard(letter);
+									System.out.println("Computer Guessed: " + letter + " And Got $" + moneyGot); 
+								}
+								break;
+							}
+							else if(randomChoice == 2) {
+								System.out.println("The Computer Is Buying Vowels: ");
+								if(canBuyVowel(computerScore)) {
+									int randomTimes = (int)(Math.random() * 5) + 1;
+									while(randomTimes-- > 0 && canBuyVowel(computerScore)) {
+										String vowel = getRandomVowel();
+										System.out.println("Computer Guessed: " + vowel); System.out.println("The Board: "); printBoard(); updateAlpha(vowel); getNewBoard(vowel);
+									}
+									break;
+								}
+							}
+							else if(randomChoice == 3) {
+								System.out.println("The Computer Is Trying To Guess The Phrase");
+								int percentage = (int)(Math.random() * 500) + 1;
+								if(percentage == 500) {System.out.println("The Computer Guessed Correctly"); computerWinnings += computerScore > 1000? 1000 : computerScore; break round;}
+								else {System.out.println("The Computer Guessed Incorrectly"); break;}
+							}
+						}
 					}
-					turn++;
+					System.out.println("The Board: "); printBoard();
+					turns++;
 				}
 				rounds++;
 			}
-		} while(!option.equalsIgnoreCase("N"));
+			if(computerWinnings > playerWinnings) {
+				System.out.println("The Computer Won");
+			}
+			else if(playerWinnings > computerScore) {
+				System.out.println("You Won!");
+			}
+			else {
+				System.out.println("It Was A Tie!");
+			}
+			System.out.println("Would You Like To Play Again? Y/N");
+			option = sc.next();
+		} while(option.equalsIgnoreCase("Y"));
 		sc.close();
 	}
-	static int getMoney(char c, int spin){ int cnt = 0; for(int i = 0; i < board.length(); i++) if(board.charAt(i) == c) cnt += spin; return cnt;}
+	static int getMoney(String c, int spin){ 
+		int cnt = 0; 
+		for(int i = 0; i < correctPhrase.length(); i++) 
+			if(correctPhrase.substring(i, i + 1).equals(c)) cnt += spin; 
+		return cnt;
+	}
 	
-	static boolean puzzleSolved(String phrase, String output) { return phrase.equals(output);}
+	static int spin() { 
+		int rand = (int)(Math.random() * 24); 
+		return wheel[rand];
+	}
 	
-	static boolean isPlayersTurn(int turn) {return turn % 2 != 0;}
+	static boolean puzzleSolved(String phrase, String output) { 
+		return phrase.equals(output);
+	}
 	
-	static boolean canBuyVowel(int money) { return money >= 250;}
+	static boolean isPlayersTurn(int turn) {
+		return turn % 2 != 0;
+	}
 	
-	static boolean isVowel(char c){ if(c == 'a' || c == 'i' || c == 'e' || c == 'o' || c =='u') return true; return false;}
+	static boolean canBuyVowel(int money) { 
+		return money >= 250;
+	}
 	
-	static boolean validInput(char c) { for(int i = 0; i < alpha.length; i++) if(alpha[i].equals(String.valueOf(c))) return true; return false;}
+	static boolean isVowel(String c ){
+		System.out.println("check");
+		if(c.equals("a") || c.equals("i") || c.equals("e") || c.equals("o") || c.equals("u")) 
+			return true; 
+		return false;
+	}
 	
-	static int spin() { int rand = (int)(Math.random() * 24); return wheel[rand];}
+	static boolean letterFoundOnAlpha(String c) { 
+		for(int i = 0; i < alpha.length; i++) { 
+			if(alpha[i].equals(c)) return true;
+		}
+		return false;
+	}
 	
-	static void resetBoard() { for(int i = 0; i < 26; i++) alpha[i] = String.valueOf((char)('A' + i));}
+	static boolean letterFoundOnBoard(String letter){ 
+		for(int i = 0; i < board.length; i++) {
+			if(board[i].equals(letter)) return true; 
+		}
+		return false;	
+	}
 	
-	static void updateAlpha(char c){for(int i = 0; i < alpha.length; i++) if(alpha[i].equals(c)) alpha[i] = "";}
+	static boolean letterFoundOnCorrectPhrase(String letter) {
+		for(int i = 0; i < correctPhrase.length(); i++) {
+			if(letter.equals(String.valueOf(correctPhrase.charAt(i)))) return true;
+		}
+		return false;
+	}
+	static void getNewBoard(String c) {
+		for(int i = 0; i < correctPhrase.length(); i++) {
+			if(!Character.isAlphabetic(correctPhrase.charAt(i))) board[i] = String.valueOf(correctPhrase.charAt(i));
+			else if(correctPhrase.substring(i, i + 1).equals(c)) board[i] = c; 
+		}
+	}
 	
-	static boolean letterFound(char letter){ for(int i = 0; i < board.length(); i++) if(board.charAt(i) == letter) return true; return false;}
+	static void resetAlpha() { 
+		for(int i = 0; i < 26; i++) {
+			alpha[i] = String.valueOf((char)('A' + i));
+		}
+	}
 	
+	static void updateAlpha(String c){
+		for(int i = 0; i < alpha.length; i++) {
+			if(alpha[i].equals(c)) alpha[i] = "";
+		}
+	}
+	
+	static void initializeBoard() {
+		board = new String[correctPhrase.length()];
+		for(int i = 0; i < correctPhrase.length(); i++) {
+			board[i] = "_";
+		}
+	}
 	static void updateWheel(int round) {
 		for(int i = 2; i < 21; i++) wheel[i] = (int)(Math.random() * 400) + 500;
 		if(round == 1) wheel[23] = 2500;
@@ -77,7 +190,9 @@ public class Main {
 		if(round == 3) wheel[23] = 5000;
 		wheel[21] = wheel[22] = -1; wheel[1] = 0;
 	}
-	static void findVowel(char vowel) { getNewBoard(vowel);}
+	static void findVowel(String vowel) { 
+		getNewBoard(vowel);
+	}
 	
 	static void initializeGame() {
 		phrase[0] = "CHURN DOWN FOR WHAT";
@@ -107,19 +222,34 @@ public class Main {
 		phrase[24] = "TWO PLUS TWO IS FOUR, MINUS ONE IS THREE QUICK MATH";
 	}
 	
-	static void displayGameState() {System.out.println("Letters Left: "); for(int i = 0; i < alpha.length; i++) if(!alpha[i].equals("")) System.out.print(alpha[i] + " ");}
-	
-	static void printBoard() { for(int i = 0; i < board.length(); i++) System.out.print(board.charAt(i));}
-	
-	static String randomPuzzleSelector() { int rand = (int)(Math.random() * 25); return phrase[rand];}
-	
-	static String getNewBoard(char c) {
-		String result = ""; 
-		for(int i = 0; i < board.length(); i++) {
-			if(!Character.isAlphabetic(board.charAt(i))) result += board.charAt(i);
-			else if(board.charAt(i) == c) result += c;
-			else result += "_";
+	static void displayGameState() {
+		System.out.println("Letters Left: "); 
+		for(int i = 0; i < alpha.length; i++) {
+			if(!alpha[i].equals("")) System.out.print(alpha[i] + " ");
 		}
-		return result;
+	}
+	
+	static void printBoard() { 
+		for(int i = 0; i < board.length; i++) { 
+			System.out.print(board[i]);
+		}
+		System.out.println();
+	}
+	
+	static String getRandomLetter() {
+		for(int i = 0; i < alpha.length; i++) {
+			if(!isVowel(alpha[i])) return alpha[i];
+		}
+		return "";
+	}
+	static String randomPuzzleSelector() { 
+		int rand = (int)(Math.random() * 25); 
+		return phrase[rand];
+	}
+	
+	static String getRandomVowel() {
+		String vowels[] = { "a", "e", "i", "o", "u"};
+		int randomIndex = (int)(Math.random() * 5);
+		return vowels[randomIndex];
 	}
 }
