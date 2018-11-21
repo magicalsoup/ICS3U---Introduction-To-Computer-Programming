@@ -41,11 +41,10 @@ public class Main {
 								displayConsonants(); 
 								System.out.println("Enter A Letter: "); 
 								String letter = sc.next(); 
-								while(true) {
-									if(letterFoundOnAlpha(letter) && !letterFoundOnBoard(letter) && !isVowel(letter)) 
-										break;
-									System.out.println("Enter A Letter: "); 
-									letter = sc.next();
+								if(letterUsed(letter)){
+									System.out.println("Sorry, That Letter Is Used Already");
+									turns++;
+									break;
 								}
 								updateAlpha(letter);
 								
@@ -71,6 +70,8 @@ public class Main {
 										
 										System.out.println("Enter A Vowel: "); 
 										String vowel = sc.next(); 
+										if(letterUsed(vowel))
+											break;
 										playerScore -= 250; 
 										getNewBoard(vowel); 
 										updateAlpha(vowel);
@@ -122,7 +123,8 @@ public class Main {
 							}
 						}
 					}
-					else {
+				 else {
+					 	System.out.println("Debug Computer's Turn"); //DEBUG
 						int spinValue = spin();	
 						if(spinValue == -1) { 
 							computerScore = 0; 
@@ -144,10 +146,10 @@ public class Main {
 							int randomChoice = computerChoice();
 							if(randomChoice == 1) { 
 								String letter = getRandomLetter();
-								while(true) {
-									if(letterFoundOnAlpha(letter) && !letterFoundOnBoard(letter))
-										break;
-									letter = getRandomLetter(); 
+								if(letterUsed(letter)){
+									System.out.println("Computer Guessed " + letter + " And It Was Already Used");
+									turns++;
+									break;
 								}
 								
 								updateAlpha(letter);
@@ -172,6 +174,8 @@ public class Main {
 									int randomTimes = (int)(Math.random() * 5) + 1;
 									while(randomTimes-- > 0 && canBuyVowel(computerScore)) {
 										String vowel = getRandomVowel(); 
+										if(letterUsed(vowel)) 
+											break;
 										computerScore -= 250;
 										System.out.println("Computer Chose : " + vowel); 
 										updateAlpha(vowel); 
@@ -182,11 +186,13 @@ public class Main {
 									break;
 								}
 								int random = computerChoice();
-								if(random == 3){
+								if(random == 2){
 									System.out.println("The Computer Is Trying To Guess The Phrase");
-									int percentage = (int)(Math.random() * 100) + 1;
-									if(percentage == 100) {
+									int percentage = (int)(Math.random() * correctPhrase.length()) + 1;
+									if(percentage >= computerPercentage()) {
+										System.out.println("The Computer Guessed " + correctPhrase);
 										System.out.println("The Computer Guessed Correctly"); 
+										System.out.println();
 										computerWinnings += computerScore < 1000? 1000 : computerScore; 
 										break round;
 									}
@@ -200,9 +206,12 @@ public class Main {
 							}
 							else if(randomChoice == 3) {
 								System.out.println("The Computer Is Trying To Guess The Phrase");
-								int percentage = (int)(Math.random() * 50) + 1;
-								if(percentage == 50) {
+								System.out.println("Debug " + computerPercentage()); //DEBUG
+								int percentage = (int)(Math.random() * correctPhrase.length()) + 1;
+								if(percentage >= computerPercentage()) {
+									System.out.println("The Computer Guessed " + correctPhrase);
 									System.out.println("The Computer Guessed Correctly"); 
+									System.out.println();
 									computerWinnings += computerScore < 1000? 1000 : computerScore; 
 									break round;
 								}
@@ -218,6 +227,7 @@ public class Main {
 				}
 				rounds++;
 			}
+			displayStats();
 			if(computerWinnings > playerWinnings) {
 				System.out.println("The Computer Won");
 			}
@@ -248,10 +258,24 @@ public class Main {
 	static int computerChoice() {
 		int random = (int)(Math.random() * 100) + 1;
 		if(random <= 50) return 1;
-		else if(random <= 90) return 2;
-		else return 3;
+		else if(random <= 75) return 3;
+		else return 2;
 	}
 	
+	static int computerPercentage(){
+		int cnt = 0;
+		for(int i = 0 ; i < board.length; i++){
+			if(Character.isAlphabetic(board[i].charAt(0))) cnt++;
+		}
+		if(cnt <= 1) 
+			return 999999;
+		cnt = 0;
+		for(int i = 0; i < board.length; i++){
+			if(board[i].equals("_")) 
+				cnt++;
+		}
+		return cnt;
+	}
 	static boolean puzzleSolved(String phrase, String output) { 
 		return phrase.equals(output);
 	}
@@ -270,21 +294,14 @@ public class Main {
 		return false;
 	}
 	
-	static boolean letterFoundOnAlpha(String c) { 
+	static boolean letterUsed(String c) { 
 		for(int i = 0; i < alpha.length; i++) { 
 			if(alpha[i].equals(c)) 
-				return true;
+				return false;
 		}
-		return false;
+		return true;
 	}
 	
-	static boolean letterFoundOnBoard(String letter){ 
-		for(int i = 0; i < board.length; i++) {
-			if(board[i].equals(letter)) 
-				return true; 
-		}
-		return false;	
-	}
 	
 	static boolean letterFoundOnCorrectPhrase(String letter) {
 		for(int i = 0; i < correctPhrase.length(); i++) {
@@ -294,6 +311,11 @@ public class Main {
 		return false;
 	}
 	
+	static void displayStats(){
+		System.out.println("Final Standings: ");
+		System.out.println("Player: " + playerWinnings);
+		System.out.println("Computer: " + computerWinnings);
+	}
 	static void getNewBoard(String c) {
 		for(int i = 0; i < correctPhrase.length(); i++) {
 			if(!Character.isAlphabetic(correctPhrase.charAt(i))) 
