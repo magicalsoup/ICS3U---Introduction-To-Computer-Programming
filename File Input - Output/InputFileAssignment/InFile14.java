@@ -5,22 +5,26 @@ import java.util.Scanner; // import Scanner
  * @Teacher Ms Leung
  * @Date Nov 30, 2018
  */
-public class InFile13{ // main class
+public class InFile14{ // main class
 	public static void main(String[]args) throws Exception { //main method
-		Scanner input = new Scanner(System.in); // create scanner
-		System.out.println("Enter Your Username");
-		String username = input.nextLine(); // get user input
-		input.close(); // close the input
-		File myFile = new File("file10.txt"); // create file
+		File myFile = new File("file11.txt"); // create file
 		Scanner sc = new Scanner(myFile); // create Scanner
-		while(sc.hasNext()){ // while there is still more input
-			if(username.equals(sc.next())){ // if username equals the input
-				System.out.println("You are logged on"); // print
-				sc.close(); // close the scanner
-				return; // terminate program
-			}
+		Scanner input = new Scanner(System.in); // create Scanner
+		int marks[] = new int[5]; // make an array of size 5
+		String names[] = new String[5]; // make an array of size 5
+		int index = 0; // set index to 0
+		while(sc.hasNext()){
+			names[index] = sc.next(); // get file input
+			System.out.println("Enter A Mark For Student: " + names[index]); // prompt user
+			marks[index] = input.nextInt(); // get user input
+			index++; // increment index by 1
 		}
-		System.out.println("You do not have a valid account"); // print
+		for(int i = 0; i < 5; i++){ // runs 5 times
+			System.out.println("Name: " + names[i]); // print names[i]
+			System.out.println("Mark: " + marks[i]); // print marks[i]
+			System.out.println(); // print a line
+		}
+		input.close(); // close the Scanner
 		sc.close(); // close the Scanner
 	}
 }
