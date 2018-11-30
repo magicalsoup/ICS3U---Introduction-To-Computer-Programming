@@ -3,7 +3,7 @@ import java.util.Scanner; // import Scanner
 /**
  * @author James Su
  * @Teacher Ms Leung
- * @Date Nov 27, 2018
+ * @Date Nov 30, 2018
  */
 public class InFile3 { // main class
 	public static void main(String[]args) throws Exception { //main method
