@@ -13,9 +13,11 @@ public class InFile3 { // main class
 		input.close(); // close the Scanner
 		File myFile = new File(name+".txt"); // create file
 		Scanner sc = new Scanner(myFile); // create Scanner
-		while(sc.hasNextLine()){ // while there's more input
-			System.out.println(sc.nextLine()); // print the contents
+		int max = -1; // set the max to -1
+		while(sc.hasNext()){ // while there's more input
+			max = Math.max(max, sc.nextInt()); // make sure max is the biggest
 		} 
+		System.out.println(max);
 		sc.close(); // close the Scanner
 	}
 }
